@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  MainApp({Key? key}) : super(key: key);
+
+  final Logger logger = Logger();
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-        body: Center(
+        appBar: AppBar(
+          title: const Text("My App"),
+          centerTitle: true,
+        ),
+        body: const Center(
           child: Text('Hello '),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Text("Press"),
+          onPressed: () {
+            logger.t("Logging");
+          },
         ),
       ),
     );
